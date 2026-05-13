@@ -22,4 +22,13 @@ class CongeModel extends Model
     {
         return $this->where('statut', 'en_attente')->findAll();
     }
+
+    public function getEmployeeRequests(int $employeId): array
+    {
+        return $this->select('conges.*, types_conge.libelle as type_libelle, types_conge.deductible')
+            ->join('types_conge', 'types_conge.id = conges.type_conge_id')
+            ->where('conges.employe_id', $employeId)
+            ->orderBy('conges.created_at', 'DESC')
+            ->findAll();
+    }
 }

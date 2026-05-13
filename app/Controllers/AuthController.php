@@ -18,7 +18,7 @@ class AuthController extends BaseController
         return view('auth/login');
     }
 
-    public function attemptLogin()
+    public function doLogin()
     {
         $rules = [
             'email'    => 'required|valid_email',

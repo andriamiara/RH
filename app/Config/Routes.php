@@ -8,7 +8,7 @@ use CodeIgniter\Router\RouteCollection;
 $routes->get('/', 'Home::index');
 
 $routes->get('/login', 'AuthController::login');
-$routes->post('/login', 'AuthController::attemptLogin');
+$routes->post('/login', 'AuthController::doLogin');
 $routes->get('/register', 'AuthController::register');
 $routes->post('/register', 'AuthController::storeRegistration');
 $routes->post('/logout', 'AuthController::logout', ['filter' => 'auth']);
@@ -17,6 +17,8 @@ $routes->group('employe', ['filter' => 'auth'], static function (RouteCollection
     $routes->get('dashboard', 'EmployeController::dashboard');
     $routes->get('demandes', 'EmployeController::index');
     $routes->get('demandes/nouvelle', 'EmployeController::create');
+    $routes->post('demandes', 'EmployeController::store');
+    $routes->post('demandes/(:num)/annuler', 'EmployeController::cancel/$1');
     $routes->get('profil', 'EmployeController::profile');
 });
 
