@@ -9,8 +9,31 @@ class RhController extends BaseController
         if ($guard = $this->requireRole('rh')) {
             return $guard;
         }
+        $db = \Config\Database::connect();
+        $currentYear = (int) date('Y');
+        $currentMonth = (int) date('m');
 
-        return view('rh/dashboard');
+        $countAttente = $db->table('conges')
+            ->where('statut', 'en_attente')
+            ->countAllResults();
+
+        $countTraiteesMois = $db->table('conges')
+            ->whereIn('statut', ['approuvee', 'refusee'])
+            ->where("strftime('%Y', created_at) =", (string) $currentYear)
+            ->where("strftime('%m', created_at) =", str_pad((string) $currentMonth, 2, '0', STR_PAD_LEFT))
+            ->countAllResults();
+
+        $countSoldesCritiques = $db->table('soldes')
+            ->select('COUNT(DISTINCT employe_id) as total')
+            ->where('jours_attribues - jours_pris <=', 2, false)
+            ->get()
+            ->getRowArray();
+
+        return view('rh/dashboard', [
+            'count_attente'        => $countAttente,
+            'count_traitees_mois'  => $countTraiteesMois,
+            'count_soldes_critiques'=> (int) ($countSoldesCritiques['total'] ?? 0),
+        ]);
     }
 
     public function index()
