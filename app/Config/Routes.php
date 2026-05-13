@@ -25,6 +25,9 @@ $routes->group('employe', ['filter' => 'auth'], static function (RouteCollection
 $routes->group('rh', ['filter' => 'auth'], static function (RouteCollection $routes): void {
     $routes->get('dashboard', 'RhController::dashboard');
     $routes->get('demandes', 'RhController::index');
+    $routes->post('demandes/(:num)/approuver', 'RhController::approve/$1');
+    $routes->post('demandes/(:num)/refuser', 'RhController::refuse/$1');
+    $routes->get('soldes', 'RhController::soldes');
 });
 
 $routes->group('admin', ['filter' => 'auth'], static function (RouteCollection $routes): void {
