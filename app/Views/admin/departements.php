@@ -12,7 +12,7 @@ $submitLabel = $isEdit ? 'Mettre a jour' : 'Creer le departement';
         <div class="sidebar-brand"><div class="sidebar-logo-icon" style="background:var(--ink);border:1px solid rgba(255,255,255,.15)"><i class="bi bi-shield-check" style="color:var(--leaf)"></i></div><div class="sidebar-brand-name">TechMada RH<span>Administration</span></div></div>
         <ul class="sidebar-nav" style="margin-top:1rem">
             <li><a href="<?= site_url('/admin/dashboard') ?>"><i class="bi bi-speedometer2"></i> Vue d'ensemble</a></li>
-            <li><a href="<?= site_url('/rh/demandes') ?>"><i class="bi bi-inbox"></i> Toutes les demandes</a></li>
+            <li><a href="<?= site_url('/admin/demandes') ?>"><i class="bi bi-inbox"></i> Toutes les demandes</a></li>
             <li><a href="<?= site_url('/admin/employes') ?>"><i class="bi bi-people"></i> Employes</a></li>
             <li><a href="<?= site_url('/admin/departements') ?>" class="active"><i class="bi bi-building"></i> Departements</a></li>
             <li><a href="<?= site_url('/admin/types-conge') ?>"><i class="bi bi-tags"></i> Types de conge</a></li>

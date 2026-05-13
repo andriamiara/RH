@@ -7,6 +7,7 @@
         <ul class="sidebar-nav" style="margin-top:1rem">
             <li><a href="<?= site_url('/rh/dashboard') ?>" class="active"><i class="bi bi-grid-1x2"></i> Tableau de bord</a></li>
             <li><a href="<?= site_url('/rh/demandes') ?>"><i class="bi bi-inbox"></i> Demandes</a></li>
+            <li><a href="<?= site_url('/rh/soldes') ?>"><i class="bi bi-clipboard-data"></i> Soldes employes</a></li>
         </ul>
         <div class="sidebar-user"><div class="s-user-row"><div class="avatar av-blue">MR</div><div><div class="user-name">Marie Rabe</div><div class="user-role">Responsable RH</div></div><?= view('partials/logout_form') ?></div></div>
     </aside>

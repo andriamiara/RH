@@ -61,6 +61,38 @@ class AdminController extends BaseController
         ]);
     }
 
+    public function demandes()
+    {
+        if ($guard = $this->requireRole('admin')) {
+            return $guard;
+        }
+
+        $statut = (string) ($this->request->getGet('statut') ?? 'toutes');
+        $departementId = (int) ($this->request->getGet('departement') ?? 0);
+
+        $builder = (new CongeModel())
+            ->select('conges.*, employes.prenom, employes.nom, departements.nom as departement_nom, types_conge.libelle as type_libelle')
+            ->join('employes', 'employes.id = conges.employe_id')
+            ->join('departements', 'departements.id = employes.departement_id', 'left')
+            ->join('types_conge', 'types_conge.id = conges.type_conge_id')
+            ->orderBy('conges.created_at', 'DESC');
+
+        if ($statut !== 'toutes') {
+            $builder->where('conges.statut', $statut);
+        }
+
+        if ($departementId > 0) {
+            $builder->where('employes.departement_id', $departementId);
+        }
+
+        return view('admin/demandes', [
+            'demandes'            => $builder->findAll(),
+            'departements'        => (new DepartementModel())->orderBy('nom', 'ASC')->findAll(),
+            'currentStatut'       => $statut,
+            'currentDepartement'  => $departementId,
+        ]);
+    }
+
     public function soldes()
     {
         if ($guard = $this->requireRole('admin')) {
