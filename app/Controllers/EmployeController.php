@@ -15,7 +15,7 @@ class EmployeController extends BaseController
             return $guard;
         }
 
-        return view('employe/dashboard');
+        return view('employe/dashboard', $this->buildDashboardData());
     }
 
     public function create()
@@ -27,7 +27,7 @@ class EmployeController extends BaseController
         return view('employe/create', $this->buildEmployeeFormData());
     }
 
-    public function store()
+    public function storeConge()
     {
         if ($guard = $this->requireRole('employe')) {
             return $guard;
@@ -72,7 +72,7 @@ class EmployeController extends BaseController
             return redirect()->back()->withInput()->with('error', 'Type de conge introuvable.');
         }
 
-        $overlap = $congeModel
+        $existence = $congeModel
             ->where('employe_id', (int) $user['id'])
             ->whereIn('statut', ['en_attente', 'approuvee'])
             ->groupStart()
@@ -81,7 +81,7 @@ class EmployeController extends BaseController
             ->groupEnd()
             ->first();
 
-        if ($overlap !== null) {
+        if ($existence !== null) {
             return redirect()->back()->withInput()->with('error', 'Une demande existe deja sur cette periode.');
         }
 
@@ -203,6 +203,65 @@ class EmployeController extends BaseController
             'types'         => $types,
             'soldes'        => $soldes,
             'referenceYear' => $referenceYear,
+        ];
+    }
+
+    private function buildDashboardData(): array
+    {
+        $user = $this->currentUser();
+        $congeModel = new CongeModel();
+        $requests = $congeModel->getEmployeeRequests((int) $user['id']);
+        $formData = $this->buildEmployeeFormData();
+        $stats = [
+            'en_attente' => 0,
+            'approuvee'  => 0,
+            'refusee'    => 0,
+            'annulee'    => 0,
+        ];
+
+        foreach ($requests as $request) {
+            $statut = $request['statut'] ?? 'en_attente';
+
+            if (array_key_exists($statut, $stats)) {
+                $stats[$statut]++;
+            }
+        }
+
+        $totalRestant = 0;
+
+        foreach ($formData['soldes'] as $solde) {
+            if ((int) $solde['deductible'] === 1) {
+                $totalRestant += (int) $solde['jours_restants'];
+            }
+        }
+
+        $monthStart = date('Y-m-01 00:00:00');
+        $monthEnd = date('Y-m-t 23:59:59');
+        $monthAbsenceDays = 0;
+
+        foreach ($requests as $request) {
+            if (($request['statut'] ?? '') !== 'approuvee') {
+                continue;
+            }
+
+            $start = max(strtotime((string) $request['date_debut']), strtotime($monthStart));
+            $end = min(strtotime((string) $request['date_fin']), strtotime($monthEnd));
+
+            if ($start !== false && $end !== false && $end >= $start) {
+                $monthAbsenceDays += (int) floor(($end - $start) / 86400) + 1;
+            }
+        }
+
+        return [
+            'user'             => $user,
+            'requests'         => array_slice($requests, 0, 5),
+            'requestsCount'    => count($requests),
+            'stats'            => $stats,
+            'soldes'           => $formData['soldes'],
+            'referenceYear'    => $formData['referenceYear'],
+            'totalRestant'     => $totalRestant,
+            'monthAbsenceDays' => $monthAbsenceDays,
+            'currentMonthLabel'=> date('m/Y'),
         ];
     }
 }
