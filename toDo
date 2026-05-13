@@ -1,0 +1,65 @@
+Phase 1 : Affichage et Consultation
+Objectif : Permettre au RH de voir les informations.
+
+Tâche 1.1 : Liste des demandes
+
+Créer une méthode dans CongeController pour récupérer les demandes.
+
+Faire une jointure (Join) avec la table employes pour afficher le nom de celui qui demande.
+
+Créer la vue HTML/Bootstrap pour afficher le tableau des demandes en attente.
+
+Tâche 1.2 : Filtres (Département / Statut)
+
+Ajouter un formulaire de filtrage en haut de la liste.
+
+Modifier la requête SQL/Query Builder pour inclure les clauses where selon les choix du RH.
+
+Tâche 1.3 : Consultation des soldes
+
+Créer une page dédiée "Liste du personnel".
+
+Afficher pour chaque employé son solde actuel (récupéré depuis la table soldes).
+
+Phase 2 : Gestion des Décisions
+Objectif : Traiter les demandes avec une interface simple.
+
+Tâche 2.1 : Formulaire d'approbation/refus
+
+Ajouter des boutons "Approuver" et "Refuser" sur chaque ligne de demande.
+
+Ouvrir une petite fenêtre (Modal) ou une page pour saisir le commentaire optionnel.
+
+Tâche 2.2 : Enregistrement de la décision
+
+Créer une méthode updateStatut dans le contrôleur.
+
+Mettre à jour la table conges : changer le statut, ajouter le commentaire_rh et l'ID du RH dans traite_par.
+
+Phase 3 : Logique Automatisée (Le cœur du système)
+Objectif : Garantir que le solde de l'employé est déduit correctement.
+
+Tâche 3.1 : Détection de l'approbation
+
+Condition : Si et seulement si le statut passe à "Approuvé".
+
+Tâche 3.2 : Mise à jour du solde
+
+Récupérer le nb_jours de la demande.
+
+Vérifier si le type de congé est déductible (via la table types_conge).
+
+Mettre à jour la table soldes : ajouter le nombre de jours dans la colonne jours_pris de l'employé concerné.
+
+Phase 4 : Sécurité et UI/UX
+Objectif : Rendre l'application robuste et agréable.
+
+Tâche 4.1 : Contrôle d'accès (Filtre Auth)
+
+Vérifier que seul un utilisateur avec le role : rh peut accéder à ces routes.
+
+Tâche 4.2 : Feedback visuel
+
+Ajouter des messages "Flash" (ex: "Demande approuvée avec succès").
+
+Utiliser des couleurs différentes pour les statuts (Vert pour approuvé, Rouge pour refusé).

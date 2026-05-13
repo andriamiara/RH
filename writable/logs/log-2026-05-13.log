@@ -48,3 +48,1388 @@ in SYSTEMPATH\CLI\InputOutput.php on line 46.
  5 SYSTEMPATH\Boot.php(442): CodeIgniter\CLI\Console->run()
  6 SYSTEMPATH\Boot.php(166): CodeIgniter\Boot::runCommand(Object(CodeIgniter\CLI\Console))
  7 ROOTPATH\spark(87): CodeIgniter\Boot::bootSpark(Object(Config\Paths))
+CRITICAL - 2026-05-13 08:56:54 --> ErrorException: Undefined variable $departements
+[Method: GET, Route: rh/demandes]
+in APPPATH\Views\rh\index.php on line 41.
+ 1 APPPATH\Views\rh\index.php(41): CodeIgniter\Debug\Exceptions->errorHandler(2, 'Undefined variable $departements', 'C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\app\\Views\\rh\\index.php', 41)
+ 2 SYSTEMPATH\View\View.php(240): include('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\app\\Views\\rh\\index.php')
+ 3 SYSTEMPATH\View\View.php(243): CodeIgniter\View\View->CodeIgniter\View\{closure}()
+ 4 SYSTEMPATH\Common.php(1250): CodeIgniter\View\View->render('rh/index', [], true)
+ 5 APPPATH\Controllers\RhController.php(22): view('rh/index')
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+ERROR - 2026-05-13 09:13:10 --> Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:10 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+[Method: GET, Route: rh/demandes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 2 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:10 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 174.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 4 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:10 --> [Caused by] Exception: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+ERROR - 2026-05-13 09:13:12 --> Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+[Method: GET, Route: rh/demandes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 2 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 174.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 4 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> [Caused by] Exception: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+ERROR - 2026-05-13 09:13:12 --> Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+[Method: GET, Route: rh/demandes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 2 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 174.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 4 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> [Caused by] Exception: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+ERROR - 2026-05-13 09:13:12 --> Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+[Method: GET, Route: rh/demandes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 2 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 174.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 4 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> [Caused by] Exception: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+ERROR - 2026-05-13 09:13:12 --> Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+[Method: GET, Route: rh/demandes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 2 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 174.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 4 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:12 --> [Caused by] Exception: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+ERROR - 2026-05-13 09:13:13 --> Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+[Method: GET, Route: rh/demandes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 2 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 174.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 4 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> [Caused by] Exception: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+ERROR - 2026-05-13 09:13:13 --> Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+[Method: GET, Route: rh/demandes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 2 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 174.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 4 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> [Caused by] Exception: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+ERROR - 2026-05-13 09:13:13 --> Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+[Method: GET, Route: rh/demandes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 2 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 174.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 4 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> [Caused by] Exception: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+ERROR - 2026-05-13 09:13:13 --> Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+[Method: GET, Route: rh/demandes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 2 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 174.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 4 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:13 --> [Caused by] Exception: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+ERROR - 2026-05-13 09:13:46 --> Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:46 --> CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+[Method: GET, Route: rh/demandes]
+in SYSTEMPATH\Database\BaseConnection.php on line 865.
+ 1 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 2 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 3 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 4 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 5 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+ 8 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+ 9 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:46 --> [Caused by] CodeIgniter\Database\Exceptions\DatabaseException: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 174.
+ 1 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 4 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 5 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 7 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+ 9 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+10 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+11 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')
+CRITICAL - 2026-05-13 09:13:46 --> [Caused by] Exception: Unable to prepare statement: 1, no such function: YEAR
+in SYSTEMPATH\Database\SQLite3\Connection.php on line 164.
+ 1 SYSTEMPATH\Database\SQLite3\Connection.php(164): SQLite3->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 2 SYSTEMPATH\Database\BaseConnection.php(910): CodeIgniter\Database\SQLite3\Connection->execute('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 3 SYSTEMPATH\Database\BaseConnection.php(827): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = \'en_attente\'
+ORDER BY `conges`.`created_at` DESC')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1649): CodeIgniter\Database\BaseConnection->query('SELECT `conges`.*, `employes`.`nom`, `employes`.`prenom`, `departements`.`nom` as `dept_nom`, `types_conge`.`libelle`, `types_conge`.`deductible`, `soldes`.`jours_attribues`, `soldes`.`jours_pris`, `soldes`.`annee`
+FROM `conges`
+JOIN `employes` ON `employes`.`id` = `conges`.`employe_id`
+LEFT JOIN `departements` ON `departements`.`id` = `employes`.`departement_id`
+JOIN `types_conge` ON `types_conge`.`id` = `conges`.`type_conge_id`
+LEFT JOIN `soldes` ON `soldes`.`employe_id` = `conges`.`employe_id` AND `soldes`.`type_conge_id` = `conges`.`type_conge_id` AND `soldes`.`annee` = YEAR(conges.date_debut)
+WHERE `conges`.`statut` = :conges.statut:
+ORDER BY `conges`.`created_at` DESC', [...], false)
+ 5 APPPATH\Controllers\RhController.php(42): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\CodeIgniter.php(951): App\Controllers\RhController->index()
+ 7 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\RhController))
+ 8 SYSTEMPATH\CodeIgniter.php(340): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 9 SYSTEMPATH\Boot.php(417): CodeIgniter\CodeIgniter->run()
+10 SYSTEMPATH\Boot.php(68): CodeIgniter\Boot::runCodeIgniter(Object(CodeIgniter\CodeIgniter))
+11 FCPATH\index.php(59): CodeIgniter\Boot::bootWeb(Object(Config\Paths))
+12 SYSTEMPATH\rewrite.php(44): require_once('C:\\Users\\Florencia\\Documents\\FLO\\S4\\SI\\RH-1\\public\\index.php')

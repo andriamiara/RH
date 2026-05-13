@@ -1,6 +1,16 @@
 <?= $this->extend('layouts/base') ?>
 
 <?= $this->section('content') ?>
+<?php
+$currentUser = session()->get('user');
+$userPrenom = is_array($currentUser) ? (string) ($currentUser['prenom'] ?? '') : '';
+$userNom = is_array($currentUser) ? (string) ($currentUser['nom'] ?? '') : '';
+$userRole = is_array($currentUser) ? (string) ($currentUser['role'] ?? '') : '';
+$initials = '';
+if ($userPrenom !== '' || $userNom !== '') {
+    $initials = strtoupper(substr($userPrenom, 0, 1) . substr($userNom, 0, 1));
+}
+?>
 <div class="app-wrap">
     <aside class="sidebar">
         <div class="sidebar-brand"><div class="sidebar-logo-icon"><i class="bi bi-people"></i></div><div class="sidebar-brand-name">TechMada RH<span>Espace RH</span></div></div>
@@ -9,7 +19,7 @@
             <li><a href="<?= site_url('/rh/demandes') ?>" class="active"><i class="bi bi-inbox"></i> Demandes</a></li>
             <li><a href="<?= site_url('/rh/soldes') ?>"><i class="bi bi-clipboard-data"></i> Soldes employes</a></li>
         </ul>
-        <div class="sidebar-user"><div class="s-user-row"><div class="avatar av-blue">MR</div><div><div class="user-name">Marie Rabe</div><div class="user-role">Responsable RH</div></div><?= view('partials/logout_form') ?></div></div>
+        <div class="sidebar-user"><div class="s-user-row"><div class="avatar av-blue"><?= esc($initials !== '' ? $initials : 'RH') ?></div><div><div class="user-name"><?= esc(trim($userPrenom . ' ' . $userNom)) ?></div><div class="user-role"><?= esc($userRole !== '' ? $userRole : 'RH') ?></div></div><?= view('partials/logout_form') ?></div></div>
     </aside>
     <div class="main">
         <div class="topbar">
@@ -155,8 +165,6 @@
     </div>
 </div>
 
-<?= $this->endSection() ?>
-
 <script>
 document.querySelectorAll('[data-refuse-toggle]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -177,3 +185,5 @@ document.querySelectorAll('[data-refuse-cancel]').forEach(btn => {
     });
 });
 </script>
+
+<?= $this->endSection() ?>
