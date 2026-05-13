@@ -61,6 +61,96 @@ class AdminController extends BaseController
         ]);
     }
 
+    public function soldes()
+    {
+        if ($guard = $this->requireRole('admin')) {
+            return $guard;
+        }
+
+        $soldeModel = new SoldeModel();
+        $editId = (int) $this->request->getGet('edit');
+        $editingSolde = $editId > 0
+            ? $soldeModel
+                ->select('soldes.*, employes.prenom, employes.nom, types_conge.libelle as type_libelle')
+                ->join('employes', 'employes.id = soldes.employe_id')
+                ->join('types_conge', 'types_conge.id = soldes.type_conge_id')
+                ->find($editId)
+            : null;
+
+        return view('admin/soldes', [
+            'soldes' => $soldeModel
+                ->select('soldes.*, employes.prenom, employes.nom, employes.email, types_conge.libelle as type_libelle')
+                ->join('employes', 'employes.id = soldes.employe_id')
+                ->join('types_conge', 'types_conge.id = soldes.type_conge_id')
+                ->orderBy('soldes.annee', 'DESC')
+                ->orderBy('employes.nom', 'ASC')
+                ->findAll(),
+            'employes'     => (new EmployeModel())->where('actif', 1)->orderBy('nom', 'ASC')->findAll(),
+            'typesConge'   => (new TypeCongeModel())->orderBy('libelle', 'ASC')->findAll(),
+            'editingSolde' => $editingSolde,
+        ]);
+    }
+
+    public function saveSolde()
+    {
+        if ($guard = $this->requireRole('admin')) {
+            return $guard;
+        }
+
+        $rules = [
+            'solde_id'        => 'permit_empty|integer',
+            'employe_id'      => 'required|integer',
+            'type_conge_id'   => 'required|integer',
+            'annee'           => 'required|integer|greater_than_equal_to[2000]',
+            'jours_attribues' => 'required|integer|greater_than_equal_to[0]',
+            'jours_pris'      => 'required|integer|greater_than_equal_to[0]',
+        ];
+
+        if (! $this->validate($rules)) {
+            $target = $this->request->getPost('solde_id') ? '/admin/soldes?edit=' . $this->request->getPost('solde_id') : '/admin/soldes';
+            return redirect()->to($target)->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $soldeId = (int) ($this->request->getPost('solde_id') ?: 0);
+        $employeId = (int) $this->request->getPost('employe_id');
+        $typeCongeId = (int) $this->request->getPost('type_conge_id');
+        $annee = (int) $this->request->getPost('annee');
+        $joursAttribues = (int) $this->request->getPost('jours_attribues');
+        $joursPris = (int) $this->request->getPost('jours_pris');
+
+        if ($joursPris > $joursAttribues) {
+            $target = $soldeId > 0 ? '/admin/soldes?edit=' . $soldeId : '/admin/soldes';
+            return redirect()->to($target)->withInput()->with('error', 'Les jours pris ne peuvent pas depasser les jours attribues.');
+        }
+
+        $soldeModel = new SoldeModel();
+        $existing = $soldeModel
+            ->where('employe_id', $employeId)
+            ->where('type_conge_id', $typeCongeId)
+            ->where('annee', $annee)
+            ->first();
+
+        if ($existing !== null && (int) $existing['id'] !== $soldeId) {
+            return redirect()->to('/admin/soldes')->withInput()->with('error', 'Un solde existe deja pour cet employe, ce type et cette annee.');
+        }
+
+        $payload = [
+            'employe_id'      => $employeId,
+            'type_conge_id'   => $typeCongeId,
+            'annee'           => $annee,
+            'jours_attribues' => $joursAttribues,
+            'jours_pris'      => $joursPris,
+        ];
+
+        if ($soldeId > 0) {
+            $soldeModel->update($soldeId, $payload);
+            return redirect()->to('/admin/soldes')->with('success', 'Solde annuel ajuste.');
+        }
+
+        $soldeModel->insert($payload);
+        return redirect()->to('/admin/soldes')->with('success', 'Solde annuel initialise.');
+    }
+
     public function employes()
     {
         if ($guard = $this->requireRole('admin')) {
