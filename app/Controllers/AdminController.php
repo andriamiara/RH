@@ -74,18 +74,24 @@ class AdminController extends BaseController
                 ->select('soldes.*, employes.prenom, employes.nom, types_conge.libelle as type_libelle')
                 ->join('employes', 'employes.id = soldes.employe_id')
                 ->join('types_conge', 'types_conge.id = soldes.type_conge_id')
+                ->where('employes.role', 'employe')
                 ->find($editId)
             : null;
 
         return view('admin/soldes', [
             'soldes' => $soldeModel
-                ->select('soldes.*, employes.prenom, employes.nom, employes.email, types_conge.libelle as type_libelle')
+                ->select('soldes.*, employes.prenom, employes.nom, employes.email, employes.role, types_conge.libelle as type_libelle')
                 ->join('employes', 'employes.id = soldes.employe_id')
                 ->join('types_conge', 'types_conge.id = soldes.type_conge_id')
+                ->where('employes.role', 'employe')
                 ->orderBy('soldes.annee', 'DESC')
                 ->orderBy('employes.nom', 'ASC')
                 ->findAll(),
-            'employes'     => (new EmployeModel())->where('actif', 1)->orderBy('nom', 'ASC')->findAll(),
+            'employes'     => (new EmployeModel())
+                ->where('actif', 1)
+                ->where('role', 'employe')
+                ->orderBy('nom', 'ASC')
+                ->findAll(),
             'typesConge'   => (new TypeCongeModel())->orderBy('libelle', 'ASC')->findAll(),
             'editingSolde' => $editingSolde,
         ]);
@@ -117,6 +123,12 @@ class AdminController extends BaseController
         $annee = (int) $this->request->getPost('annee');
         $joursAttribues = (int) $this->request->getPost('jours_attribues');
         $joursPris = (int) $this->request->getPost('jours_pris');
+        $employe = (new EmployeModel())->find($employeId);
+
+        if ($employe === null || ($employe['role'] ?? null) !== 'employe') {
+            $target = $soldeId > 0 ? '/admin/soldes?edit=' . $soldeId : '/admin/soldes';
+            return redirect()->to($target)->withInput()->with('error', 'Le solde annuel ne peut etre gere que pour un employe.');
+        }
 
         if ($joursPris > $joursAttribues) {
             $target = $soldeId > 0 ? '/admin/soldes?edit=' . $soldeId : '/admin/soldes';
