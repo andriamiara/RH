@@ -30,7 +30,11 @@ $routes->group('rh', ['filter' => 'auth'], static function (RouteCollection $rou
 $routes->group('admin', ['filter' => 'auth'], static function (RouteCollection $routes): void {
     $routes->get('dashboard', 'AdminController::dashboard');
     $routes->get('employes', 'AdminController::employes');
+    $routes->get('departements', 'AdminController::departements');
     $routes->post('employes', 'AdminController::storeEmploye');
     $routes->post('employes/(:num)', 'AdminController::updateEmploye/$1');
     $routes->post('employes/(:num)/desactiver', 'AdminController::deactivateEmploye/$1');
+    $routes->post('departements', 'AdminController::storeDepartement');
+    $routes->post('departements/(:num)', 'AdminController::updateDepartement/$1');
+    $routes->post('departements/(:num)/supprimer', 'AdminController::deleteDepartement/$1');
 });

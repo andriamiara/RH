@@ -15,7 +15,10 @@ class AdminController extends BaseController
             return $guard;
         }
 
-        return view('admin/dashboard');
+        return view('admin/dashboard', [
+            'employesActifs' => (new EmployeModel())->where('actif', 1)->countAllResults(),
+            'departementsCount' => (new DepartementModel())->countAllResults(),
+        ]);
     }
 
     public function employes()
@@ -163,5 +166,110 @@ class AdminController extends BaseController
         $employeModel->update($id, ['actif' => 0]);
 
         return redirect()->to('/admin/employes')->with('success', 'Employe desactive.');
+    }
+
+    public function departements()
+    {
+        if ($guard = $this->requireRole('admin')) {
+            return $guard;
+        }
+
+        $departementModel = new DepartementModel();
+        $editId = (int) $this->request->getGet('edit');
+        $editingDepartement = $editId > 0 ? $departementModel->find($editId) : null;
+
+        return view('admin/departements', [
+            'departements' => $departementModel
+                ->select('departements.*, COUNT(employes.id) as employes_count')
+                ->join('employes', 'employes.departement_id = departements.id', 'left')
+                ->groupBy('departements.id')
+                ->orderBy('departements.nom', 'ASC')
+                ->findAll(),
+            'editingDepartement' => $editingDepartement,
+        ]);
+    }
+
+    public function storeDepartement()
+    {
+        if ($guard = $this->requireRole('admin')) {
+            return $guard;
+        }
+
+        $rules = [
+            'nom'         => 'required|min_length[2]|max_length[100]|is_unique[departements.nom]',
+            'description' => 'permit_empty|max_length[255]',
+        ];
+
+        if (! $this->validate($rules)) {
+            return redirect()->to('/admin/departements')->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        (new DepartementModel())->insert([
+            'nom'         => trim((string) $this->request->getPost('nom')),
+            'description' => trim((string) $this->request->getPost('description')) ?: null,
+        ]);
+
+        return redirect()->to('/admin/departements')->with('success', 'Departement cree avec succes.');
+    }
+
+    public function updateDepartement(int $id)
+    {
+        if ($guard = $this->requireRole('admin')) {
+            return $guard;
+        }
+
+        $departementModel = new DepartementModel();
+        $departement = $departementModel->find($id);
+
+        if ($departement === null) {
+            return redirect()->to('/admin/departements')->with('error', 'Departement introuvable.');
+        }
+
+        $rules = [
+            'nom'         => 'required|min_length[2]|max_length[100]',
+            'description' => 'permit_empty|max_length[255]',
+        ];
+
+        if (! $this->validate($rules)) {
+            return redirect()->to('/admin/departements?edit=' . $id)->withInput()->with('errors', $this->validator->getErrors());
+        }
+
+        $nom = trim((string) $this->request->getPost('nom'));
+        $duplicate = $departementModel->where('nom', $nom)->where('id !=', $id)->first();
+
+        if ($duplicate !== null) {
+            return redirect()->to('/admin/departements?edit=' . $id)->withInput()->with('error', 'Un departement avec ce nom existe deja.');
+        }
+
+        $departementModel->update($id, [
+            'nom'         => $nom,
+            'description' => trim((string) $this->request->getPost('description')) ?: null,
+        ]);
+
+        return redirect()->to('/admin/departements')->with('success', 'Departement mis a jour.');
+    }
+
+    public function deleteDepartement(int $id)
+    {
+        if ($guard = $this->requireRole('admin')) {
+            return $guard;
+        }
+
+        $departementModel = new DepartementModel();
+        $departement = $departementModel->find($id);
+
+        if ($departement === null) {
+            return redirect()->to('/admin/departements')->with('error', 'Departement introuvable.');
+        }
+
+        $hasEmployees = (new EmployeModel())->where('departement_id', $id)->countAllResults() > 0;
+
+        if ($hasEmployees) {
+            return redirect()->to('/admin/departements')->with('error', 'Impossible de supprimer un departement rattache a des employes.');
+        }
+
+        $departementModel->delete($id);
+
+        return redirect()->to('/admin/departements')->with('success', 'Departement supprime.');
     }
 }
