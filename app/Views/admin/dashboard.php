@@ -37,6 +37,7 @@ if (! function_exists('adminDashboardStatutClass')) {
             <li><a href="<?= site_url('/admin/employes') ?>"><i class="bi bi-people"></i> Employes</a></li>
             <li><a href="<?= site_url('/admin/departements') ?>"><i class="bi bi-building"></i> Departements</a></li>
             <li><a href="<?= site_url('/admin/types-conge') ?>"><i class="bi bi-tags"></i> Types de conge</a></li>
+            <li><a href="<?= site_url('/admin/soldes') ?>"><i class="bi bi-sliders"></i> Soldes annuels</a></li>
         </ul>
         <div class="sidebar-user"><div class="s-user-row"><div class="avatar" style="background:#5a2d82">AD</div><div><div class="user-name">Administrateur</div><div class="user-role">Admin systeme</div></div><?= view('partials/logout_form') ?></div></div>
     </aside>

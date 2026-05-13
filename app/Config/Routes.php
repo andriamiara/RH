@@ -32,6 +32,7 @@ $routes->group('admin', ['filter' => 'auth'], static function (RouteCollection $
     $routes->get('employes', 'AdminController::employes');
     $routes->get('departements', 'AdminController::departements');
     $routes->get('types-conge', 'AdminController::typesConge');
+    $routes->get('soldes', 'AdminController::soldes');
     $routes->post('employes', 'AdminController::storeEmploye');
     $routes->post('employes/(:num)', 'AdminController::updateEmploye/$1');
     $routes->post('employes/(:num)/desactiver', 'AdminController::deactivateEmploye/$1');
@@ -41,4 +42,5 @@ $routes->group('admin', ['filter' => 'auth'], static function (RouteCollection $
     $routes->post('types-conge', 'AdminController::storeTypeConge');
     $routes->post('types-conge/(:num)', 'AdminController::updateTypeConge/$1');
     $routes->post('types-conge/(:num)/supprimer', 'AdminController::deleteTypeConge/$1');
+    $routes->post('soldes', 'AdminController::saveSolde');
 });
