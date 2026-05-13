@@ -42,6 +42,9 @@ class Database extends Config
         'strictOn'     => false,
         'failover'     => [],
         'port'         => '',
+        'foreignKeys'  => true,
+        'busyTimeout'  => 1000,
+        'synchronous'  => null,
         'numberNative' => false,
         'foundRows'    => false,
         'dateFormat'   => [

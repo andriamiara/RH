@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use CodeIgniter\Controller;
 use CodeIgniter\HTTP\RequestInterface;
+use CodeIgniter\HTTP\RedirectResponse;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 
@@ -25,7 +26,7 @@ abstract class BaseController extends Controller
      * The creation of dynamic property is deprecated in PHP 8.2.
      */
 
-    // protected $session;
+    protected $session;
 
     /**
      * @return void
@@ -34,12 +35,46 @@ abstract class BaseController extends Controller
     {
         // Load here all helpers you want to be available in your controllers that extend BaseController.
         // Caution: Do not put the this below the parent::initController() call below.
-        // $this->helpers = ['form', 'url'];
+        $this->helpers = ['form', 'url'];
 
         // Caution: Do not edit this line.
         parent::initController($request, $response, $logger);
 
         // Preload any models, libraries, etc, here.
-        // $this->session = service('session');
+        $this->session = service('session');
+    }
+
+    protected function currentUser(): ?array
+    {
+        $user = $this->session->get('user');
+
+        return is_array($user) ? $user : null;
+    }
+
+    protected function requireRole(string|array $roles): RedirectResponse|null
+    {
+        $user = $this->currentUser();
+
+        if ($user === null) {
+            return redirect()->to('/login');
+        }
+
+        $roles = (array) $roles;
+
+        if (! in_array($user['role'] ?? null, $roles, true)) {
+            return redirect()->to($this->dashboardForRole($user['role'] ?? null))
+                ->with('error', 'Acces refuse pour ce role.');
+        }
+
+        return null;
+    }
+
+    protected function dashboardForRole(?string $role): string
+    {
+        return match ($role) {
+            'admin'   => '/admin/dashboard',
+            'rh'      => '/rh/dashboard',
+            default   => '/employe/dashboard',
+        };
     }
 }
