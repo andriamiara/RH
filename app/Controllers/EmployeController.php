@@ -27,7 +27,7 @@ class EmployeController extends BaseController
         return view('employe/create', $this->buildEmployeeFormData());
     }
 
-    public function store()
+    public function storeConge()
     {
         if ($guard = $this->requireRole('employe')) {
             return $guard;
@@ -72,7 +72,7 @@ class EmployeController extends BaseController
             return redirect()->back()->withInput()->with('error', 'Type de conge introuvable.');
         }
 
-        $overlap = $congeModel
+        $existence = $congeModel
             ->where('employe_id', (int) $user['id'])
             ->whereIn('statut', ['en_attente', 'approuvee'])
             ->groupStart()
@@ -81,7 +81,7 @@ class EmployeController extends BaseController
             ->groupEnd()
             ->first();
 
-        if ($overlap !== null) {
+        if ($existence !== null) {
             return redirect()->back()->withInput()->with('error', 'Une demande existe deja sur cette periode.');
         }
 
