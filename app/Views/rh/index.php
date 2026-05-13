@@ -23,6 +23,7 @@
         </div>
         <div class="content">
             <?php $errorRefusId = session()->getFlashdata('error_refus_id'); ?>
+            <?php $errorRefusReason = session()->getFlashdata('error_refus_reason'); ?>
             <?php if (session()->getFlashdata('success')): ?>
                 <div class="flash flash-success"><i class="bi bi-check-circle-fill"></i><?= esc(session()->getFlashdata('success')) ?></div>
             <?php endif; ?>
@@ -108,24 +109,34 @@
                                     <tr id="refus-row-<?= esc($demande['id']) ?>" style="display:<?= $showRefus ? '' : 'none' ?>">
                                         <td colspan="7">
                                             <div class="form-section" style="border-color:var(--danger-br);background:var(--danger-bg)">
-                                                <h3 style="color:var(--danger)"><i class="bi bi-x-circle"></i> Confirmer le refus - <?= esc($demande['prenom'] . ' ' . $demande['nom']) ?></h3>
-                                                <div style="font-size:.875rem;color:var(--ink);margin-bottom:1rem">
-                                                    Demande de <strong><?= esc($demande['nb_jours']) ?> jours</strong> du <?= esc(date('d/m/Y', strtotime($demande['date_debut']))) ?> au <?= esc(date('d/m/Y', strtotime($demande['date_fin']))) ?> · Type : <?= esc($demande['libelle']) ?><br>
-                                                    <?php if ($reste !== null && $reste < (int) $demande['nb_jours']): ?>
-                                                        <span style="font-size:.8rem;color:var(--danger)"><i class="bi bi-exclamation-triangle"></i> Solde insuffisant : <?= esc($reste) ?> jour disponible, <?= esc($demande['nb_jours']) ?> demandes.</span>
-                                                    <?php endif; ?>
-                                                </div>
-                                                <form method="post" action="<?= site_url('/rh/demandes/' . $demande['id'] . '/refuser') ?>">
-                                                    <?= csrf_field() ?>
-                                                    <div class="f-group">
-                                                        <label class="f-label">Commentaire pour l'employe (obligatoire)</label>
-                                                        <textarea name="commentaire_rh" class="f-textarea" placeholder="Ex : Solde insuffisant, veuillez contacter les RH pour un conge sans solde." required></textarea>
+                                                <?php if ($errorRefusReason === 'solde_introuvable'): ?>
+                                                    <h3 style="color:var(--danger)"><i class="bi bi-x-circle"></i> Solde introuvable pour cet employe</h3>
+                                                    <div style="font-size:.875rem;color:var(--ink);margin-bottom:1rem">
+                                                        Impossible de traiter cette demande car aucun solde n'a ete trouve pour cet employe.
                                                     </div>
                                                     <div class="form-actions">
-                                                        <button class="btn-sm btn-refuse" type="submit" style="padding:9px 16px;font-size:.875rem"><i class="bi bi-x-lg"></i> Confirmer le refus</button>
-                                                        <button class="btn-secondary" type="button" data-refuse-cancel="<?= esc($demande['id']) ?>"><i class="bi bi-arrow-left"></i> Annuler</button>
+                                                        <button class="btn-secondary" type="button" data-refuse-cancel="<?= esc($demande['id']) ?>"><i class="bi bi-arrow-left"></i> Fermer</button>
                                                     </div>
-                                                </form>
+                                                <?php else: ?>
+                                                    <h3 style="color:var(--danger)"><i class="bi bi-x-circle"></i> Confirmer le refus - <?= esc($demande['prenom'] . ' ' . $demande['nom']) ?></h3>
+                                                    <div style="font-size:.875rem;color:var(--ink);margin-bottom:1rem">
+                                                        Demande de <strong><?= esc($demande['nb_jours']) ?> jours</strong> du <?= esc(date('d/m/Y', strtotime($demande['date_debut']))) ?> au <?= esc(date('d/m/Y', strtotime($demande['date_fin']))) ?> · Type : <?= esc($demande['libelle']) ?><br>
+                                                        <?php if ($reste !== null && $reste < (int) $demande['nb_jours']): ?>
+                                                            <span style="font-size:.8rem;color:var(--danger)"><i class="bi bi-exclamation-triangle"></i> Solde insuffisant : <?= esc($reste) ?> jour disponible, <?= esc($demande['nb_jours']) ?> demandes.</span>
+                                                        <?php endif; ?>
+                                                    </div>
+                                                    <form method="post" action="<?= site_url('/rh/demandes/' . $demande['id'] . '/refuser') ?>">
+                                                        <?= csrf_field() ?>
+                                                        <div class="f-group">
+                                                            <label class="f-label">Commentaire pour l'employe (obligatoire)</label>
+                                                            <textarea name="commentaire_rh" class="f-textarea" placeholder="Ex : Solde insuffisant, veuillez contacter les RH pour un conge sans solde." required></textarea>
+                                                        </div>
+                                                        <div class="form-actions">
+                                                            <button class="btn-sm btn-refuse" type="submit" style="padding:9px 16px;font-size:.875rem"><i class="bi bi-x-lg"></i> Confirmer le refus</button>
+                                                            <button class="btn-secondary" type="button" data-refuse-cancel="<?= esc($demande['id']) ?>"><i class="bi bi-arrow-left"></i> Annuler</button>
+                                                        </div>
+                                                    </form>
+                                                <?php endif; ?>
                                             </div>
                                         </td>
                                     </tr>

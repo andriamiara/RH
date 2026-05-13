@@ -92,7 +92,10 @@ class RhController extends BaseController
 
             if ($solde === null) {
                 $db->transRollback();
-                return redirect()->to('/rh/demandes')->with('error', 'Solde introuvable pour cet employe.');
+                return redirect()->to('/rh/demandes')
+                    ->with('error', 'Solde introuvable pour cet employe.')
+                    ->with('error_refus_id', $id)
+                    ->with('error_refus_reason', 'solde_introuvable');
             }
 
             $joursPris = (int) $solde['jours_pris'];
@@ -180,7 +183,10 @@ class RhController extends BaseController
 
                 if ($solde === null) {
                     $db->transRollback();
-                    return redirect()->to('/rh/demandes')->with('error', 'Solde introuvable pour cet employe.');
+                    return redirect()->to('/rh/demandes')
+                        ->with('error', 'Solde introuvable pour cet employe.')
+                        ->with('error_refus_id', $id)
+                        ->with('error_refus_reason', 'solde_introuvable');
                 }
 
                 $joursPris = (int) $solde['jours_pris'];
