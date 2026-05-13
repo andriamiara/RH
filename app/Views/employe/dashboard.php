@@ -29,6 +29,7 @@ if (! function_exists('dashboardStatutClass')) {
 }
 
 $initiales = strtoupper(substr((string) ($user['prenom'] ?? 'E'), 0, 1) . substr((string) ($user['nom'] ?? 'M'), 0, 1));
+$departementLabel = $departement['nom'] ?? 'Aucun departement';
 ?>
 <div class="app-wrap">
     <aside class="sidebar">
@@ -40,10 +41,10 @@ $initiales = strtoupper(substr((string) ($user['prenom'] ?? 'E'), 0, 1) . substr
             <li><a href="<?= site_url('/employe/demandes') ?>"><i class="bi bi-calendar3"></i> Mes demandes<?php if ($stats['en_attente'] > 0): ?> <span class="nav-badge alert"><?= esc((string) $stats['en_attente']) ?></span><?php endif; ?></a></li>
             <li><a href="<?= site_url('/employe/profil') ?>"><i class="bi bi-person"></i> Mon profil</a></li>
         </ul>
-        <div class="sidebar-user"><div class="s-user-row"><div class="avatar av-green"><?= esc($initiales) ?></div><div><div class="user-name"><?= esc(($user['prenom'] ?? '') . ' ' . ($user['nom'] ?? '')) ?></div><div class="user-role">Employe</div></div><?= view('partials/logout_form') ?></div></div>
+        <div class="sidebar-user"><div class="s-user-row"><div class="avatar av-green"><?= esc($initiales) ?></div><div><div class="user-name"><?= esc(($user['prenom'] ?? '') . ' ' . ($user['nom'] ?? '')) ?></div><div class="user-role">Employe · <?= esc($departementLabel) ?></div></div><?= view('partials/logout_form') ?></div></div>
     </aside>
     <div class="main">
-        <div class="topbar"><div><div class="topbar-title">Tableau de bord</div><div class="topbar-breadcrumb">Accueil</div></div><div class="topbar-actions"><a href="<?= site_url('/employe/demandes/nouvelle') ?>" class="btn-forest" style="padding:7px 14px;font-size:.82rem"><i class="bi bi-plus-lg"></i> Nouvelle demande</a></div></div>
+        <div class="topbar"><div><div class="topbar-title">Tableau de bord</div><div class="topbar-breadcrumb">Accueil · <?= esc($departementLabel) ?></div></div><div class="topbar-actions"><a href="<?= site_url('/employe/demandes/nouvelle') ?>" class="btn-forest" style="padding:7px 14px;font-size:.82rem"><i class="bi bi-plus-lg"></i> Nouvelle demande</a></div></div>
         <div class="content">
             <?php if (session()->getFlashdata('success')): ?><div class="flash flash-success"><i class="bi bi-check-circle-fill"></i><?= esc(session()->getFlashdata('success')) ?></div><?php endif; ?>
             <?php if (session()->getFlashdata('error')): ?><div class="flash flash-error"><i class="bi bi-exclamation-circle-fill"></i><?= esc(session()->getFlashdata('error')) ?></div><?php endif; ?>
@@ -58,19 +59,23 @@ $initiales = strtoupper(substr((string) ($user['prenom'] ?? 'E'), 0, 1) . substr
 
             <div class="data-card">
                 <div class="data-card-head"><h3>Mes soldes de conges - <?= esc((string) $referenceYear) ?></h3></div>
-                <div style="padding:1rem 1.25rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
-                    <?php foreach ($soldes as $solde): ?>
-                        <?php $percent = $solde['jours_annuels'] > 0 ? max(0, min(100, ($solde['jours_restants'] / $solde['jours_annuels']) * 100)) : 0; ?>
-                        <div class="solde-card" style="margin:0">
-                            <div class="solde-header">
-                                <span class="solde-type"><?= esc($solde['libelle']) ?></span>
-                                <span class="solde-nums"><strong><?= esc((string) $solde['jours_restants']) ?></strong> / <?= esc((string) $solde['jours_annuels']) ?> j</span>
+                <?php if ($soldes === []): ?>
+                    <div class="empty"><i class="bi bi-piggy-bank"></i><p>Aucun solde initialise pour cet employe.</p></div>
+                <?php else: ?>
+                    <div style="padding:1rem 1.25rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem">
+                        <?php foreach ($soldes as $solde): ?>
+                            <?php $percent = $solde['jours_annuels'] > 0 ? max(0, min(100, ($solde['jours_restants'] / $solde['jours_annuels']) * 100)) : 0; ?>
+                            <div class="solde-card" style="margin:0">
+                                <div class="solde-header">
+                                    <span class="solde-type"><?= esc($solde['libelle']) ?></span>
+                                    <span class="solde-nums"><strong><?= esc((string) $solde['jours_restants']) ?></strong> / <?= esc((string) $solde['jours_annuels']) ?> j</span>
+                                </div>
+                                <div class="solde-bar"><div class="solde-fill<?= $solde['jours_restants'] <= 2 && $solde['deductible'] ? ' warn' : '' ?>" style="width:<?= esc((string) $percent) ?>%"></div></div>
+                                <div class="solde-label"><?= esc((string) $solde['jours_restants']) ?> jours restants · <?= esc((string) $solde['jours_pris']) ?> pris</div>
                             </div>
-                            <div class="solde-bar"><div class="solde-fill<?= $solde['jours_restants'] <= 2 && $solde['deductible'] ? ' warn' : '' ?>" style="width:<?= esc((string) $percent) ?>%"></div></div>
-                            <div class="solde-label"><?= esc((string) $solde['jours_restants']) ?> jours restants · <?= esc((string) $solde['jours_pris']) ?> pris</div>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php endif; ?>
             </div>
 
             <div class="data-card">
@@ -108,7 +113,7 @@ $initiales = strtoupper(substr((string) ($user['prenom'] ?? 'E'), 0, 1) . substr
                 <?php endif; ?>
             </div>
         </div>
-        <div class="footer-app"><i class="bi bi-c-circle"></i> 2025 <span>TechMada RH</span> - Projet CodeIgniter 4</div>
+        <div class="footer-app"><i class="bi bi-c-circle"></i> <?= esc((string) $currentYear) ?> <span>TechMada RH</span> - Projet CodeIgniter 4</div>
     </div>
 </div>
 <?= $this->endSection() ?>

@@ -210,6 +210,10 @@ class EmployeController extends BaseController
     {
         $user = $this->currentUser();
         $congeModel = new CongeModel();
+        $departement = null;
+        if ($user !== null && isset($user['departement_id'])) {
+            $departement = (new DepartementModel())->find((int) $user['departement_id']);
+        }
         $requests = $congeModel->getEmployeeRequests((int) $user['id']);
         $formData = $this->buildEmployeeFormData();
         $stats = [
@@ -254,6 +258,7 @@ class EmployeController extends BaseController
 
         return [
             'user'             => $user,
+            'departement'      => $departement,
             'requests'         => array_slice($requests, 0, 5),
             'requestsCount'    => count($requests),
             'stats'            => $stats,
@@ -262,6 +267,7 @@ class EmployeController extends BaseController
             'totalRestant'     => $totalRestant,
             'monthAbsenceDays' => $monthAbsenceDays,
             'currentMonthLabel'=> date('m/Y'),
+            'currentYear'      => date('Y'),
         ];
     }
 }
