@@ -15,6 +15,7 @@ $submitLabel = $isEdit ? 'Mettre a jour' : 'Creer le departement';
             <li><a href="<?= site_url('/rh/demandes') ?>"><i class="bi bi-inbox"></i> Toutes les demandes</a></li>
             <li><a href="<?= site_url('/admin/employes') ?>"><i class="bi bi-people"></i> Employes</a></li>
             <li><a href="<?= site_url('/admin/departements') ?>" class="active"><i class="bi bi-building"></i> Departements</a></li>
+            <li><a href="<?= site_url('/admin/types-conge') ?>"><i class="bi bi-tags"></i> Types de conge</a></li>
         </ul>
         <div class="sidebar-user"><div class="s-user-row"><div class="avatar" style="background:#5a2d82">AD</div><div><div class="user-name">Administrateur</div><div class="user-role">Admin systeme</div></div><?= view('partials/logout_form') ?></div></div>
     </aside>
