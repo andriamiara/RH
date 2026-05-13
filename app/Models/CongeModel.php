@@ -17,12 +17,6 @@ class CongeModel extends Model
         'nb_jours', 'motif', 'statut', 'commentaire_rh', 'traite_par'
     ];
 
-    // Vous pourriez ajouter une méthode pour récupérer les demandes en attente
-    public function getPendingRequests()
-    {
-        return $this->where('statut', 'en_attente')->findAll();
-    }
-
     public function getEmployeeRequests(int $employeId): array
     {
         return $this->select('conges.*, types_conge.libelle as type_libelle, types_conge.deductible')
